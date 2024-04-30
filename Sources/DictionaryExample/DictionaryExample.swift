@@ -1,56 +1,56 @@
 import Foundation
 
 class TextProcessor {
-    var patientDictionary: [String: String] = [:] 
-    var hospitalDictionary: [String: String] = [:] 
+    var smartphoneDictionary: [String: Double] = [:] // Словарь смартфонов
+    var vendorDictionary: [String: String] = [:] // Словарь производителей
 
-    func addPatient(name: String, diagnosis: String) {
-        patientDictionary[name] = diagnosis
+    func addSmartphone(name: String, cost: Double) {
+        smartphoneDictionary[name] = cost
     }
 
-    func addHospital(name: String, city: String) {
-        hospitalDictionary[name] = city
+    func addVendor(name: String, country: String) {
+        vendorDictionary[name] = country
     }
 
-    func countPatients() -> Int {
-        return patientDictionary.count
+    func countSmartphones() -> Int {
+        return smartphoneDictionary.count
     }
 
-    func countHospitals() -> Int {
-        return hospitalDictionary.count
+    func countVendors() -> Int {
+        return vendorDictionary.count
     }
 
     func showMenu() {
         print("Меню:")
-        print("1. Добавить пациента")
-        print("2. Добавить больницу")
-        print("3. Подсчитать количество пациентов")
-        print("4. Подсчитать количество больниц")
+        print("1. Добавить смартфон")
+        print("2. Добавить производителя")
+        print("3. Подсчитать количество смартфонов")
+        print("4. Подсчитать количество производителей")
         print("5. Выйти")
         print("Выберите операцию (1-5):")
         
         if let choice = readLine() {
             switch choice {
                 case "1":
-                    print("Введите имя пациента:")
+                    print("Введите название смартфона:")
                     if let name = readLine() {
-                        print("Введите диагноз пациента:")
-                        if let diagnosis = readLine() {
-                            addPatient(name: name, diagnosis: diagnosis)
+                        print("Введите цену смартфона:")
+                        if let costStr = readLine(), let cost = Double(costStr) {
+                            addSmartphone(name: name, cost: cost)
                         }
                     }
                 case "2":
-                    print("Введите название больницы:")
+                    print("Введите название производителя:")
                     if let name = readLine() {
-                        print("Введите город, в котором находится больница:")
-                        if let city = readLine() {
-                            addHospital(name: name, city: city)
+                        print("Введите страну, в которой находится производитель:")
+                        if let country = readLine() {
+                            addVendor(name: name, country: country)
                         }
                     }
                 case "3":
-                    print("Количество пациентов: \(countPatients())")
+                    print("Количество смартфонов: \(countSmartphones())")
                 case "4":
-                    print("Количество больниц: \(countHospitals())")
+                    print("Количество производителей: \(countVendors())")
                 case "5":
                     return
                 default:
@@ -58,6 +58,7 @@ class TextProcessor {
             }
         }
     }
+
 
     func run() {
             showMenu()
